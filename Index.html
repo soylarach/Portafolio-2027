@@ -1,0 +1,445 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Laura Sandoval — Product Designer at Notion</title>
+  <link rel="stylesheet" href="Style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg: #ffffff;
+      --text: #1a1a1a;
+      --text-secondary: #6b6b6b;
+      --border: #e5e5e5;
+      --nav-width: 260px;
+      --sidebar-width: 320px;
+    }
+
+    html {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 15px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* ── TOP NAV (mobile tabs) ── */
+    .nav-tabs {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      border-top: 1px solid var(--border);
+      padding: 8px 0 max(8px, env(safe-area-inset-bottom));
+      justify-content: space-around;
+    }
+
+    .nav-tabs a {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      font-size: 11px;
+      color: var(--text-secondary);
+      padding: 4px 16px;
+    }
+
+    .nav-tabs a svg {
+      width: 22px;
+      height: 22px;
+    }
+
+    /* ── LAYOUT ── */
+    .home {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* ── SIDEBAR ── */
+    .sidebar {
+      width: var(--sidebar-width);
+      min-height: 100vh;
+      padding: 48px 40px;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+      flex-shrink: 0;
+    }
+
+    .intro p {
+      line-height: 1.65;
+      color: var(--text);
+      font-size: 14.5px;
+    }
+
+    .intro p + p {
+      margin-top: 20px;
+    }
+
+    .intro a {
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .intro a:hover {
+      opacity: 0.6;
+    }
+
+    .emoji-avatar {
+      display: inline-block;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      vertical-align: -5px;
+      margin-left: 2px;
+      background: #ddd;
+      overflow: hidden;
+    }
+
+    .emoji-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Sidebar nav buttons */
+    .sidebar-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .sidebar-nav a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 10px;
+      border-radius: 8px;
+      color: var(--text-secondary);
+      font-size: 14px;
+      font-weight: 450;
+      transition: background 0.15s, color 0.15s;
+    }
+
+    .sidebar-nav a:hover {
+      background: #f5f5f5;
+      color: var(--text);
+    }
+
+    .sidebar-nav a svg {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+      stroke: currentColor;
+    }
+
+    /* ── PROJECTS GRID ── */
+    .featured-projects {
+      flex: 1;
+      padding: 40px 40px 40px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .project-card {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      background: #111;
+      aspect-ratio: 16 / 9;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .project-card:hover .project-thumbnail {
+      transform: scale(1.02);
+    }
+
+    .project-thumbnail {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+
+    .project-card video.project-thumbnail {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Progressive blur overlay */
+    .project-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        transparent 40%,
+        rgba(0,0,0,0.1) 60%,
+        rgba(0,0,0,0.55) 80%,
+        rgba(0,0,0,0.75) 100%
+      );
+      display: flex;
+      align-items: flex-end;
+      padding: 24px;
+      gap: 6px;
+    }
+
+    .project-info {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .project-title {
+      color: #fff;
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: -0.2px;
+    }
+
+    .project-year {
+      color: rgba(255,255,255,0.65);
+      font-size: 13px;
+      font-weight: 400;
+    }
+
+    /* ── VIEW ALL BUTTON ── */
+    .view-all-wrap {
+      display: flex;
+      justify-content: center;
+      padding: 24px 0 16px;
+      gap: 12px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
+      border-radius: 100px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      border: none;
+      transition: background 0.15s, opacity 0.15s;
+      font-family: inherit;
+    }
+
+    .btn-secondary {
+      background: #1a1a1a;
+      color: #fff;
+    }
+
+    .btn-secondary:hover {
+      opacity: 0.8;
+    }
+
+    .btn-tertiary {
+      background: transparent;
+      color: var(--text-secondary);
+      border: 1px solid var(--border);
+    }
+
+    .btn-tertiary:hover {
+      background: #f5f5f5;
+      color: var(--text);
+    }
+
+    .btn svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      font-size: 12px;
+      color: var(--text-secondary);
+      padding: 24px 0 40px;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 860px) {
+      .home {
+        flex-direction: column;
+      }
+
+      .sidebar {
+        width: 100%;
+        height: auto;
+        position: static;
+        padding: 32px 24px 24px;
+        gap: 28px;
+      }
+
+      .sidebar-nav {
+        flex-direction: row;
+        flex-wrap: wrap;
+      }
+
+      .featured-projects {
+        padding: 0 24px 100px;
+      }
+
+      .nav-tabs {
+        display: flex;
+      }
+
+      .project-title {
+        font-size: 15px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .sidebar {
+        padding: 28px 20px 20px;
+      }
+
+      .featured-projects {
+        padding: 0 16px 100px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Mobile bottom nav -->
+  <nav class="nav-tabs">
+    <a href="#">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+      Work
+    </a>
+    <a href="https://x.com/laurasideral" target="_blank">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4l11.733 16h4.267l-11.733-16z"/><path d="M4 20l6.768-6.768m2.46-2.46L20 4"/></svg>
+      X
+    </a>
+    <a href="https://notes.lausandoval.com/" target="_blank">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 17.5v-6.5h.5l4 6h.5v-6.5"/><path d="M19.077 20.071l-11.53.887a1 1 0 0 1-.876-.397l-2.471-3.294a1 1 0 0 1-.2-.6v-10.741a1 1 0 0 1 .923-.997l11.389-.876a2 2 0 0 1 1.262.33l1.535 1.023a2 2 0 0 1 .891 1.664v12.004a1 1 0 0 1-.923.997z"/><path d="M4.5 5.5l2.5 2.5"/><path d="M20 7l-13 1v12.5"/></svg>
+      Notes
+    </a>
+  </nav>
+
+  <div class="home">
+
+    <!-- ── SIDEBAR ── -->
+    <section class="sidebar">
+      <div class="intro">
+        <p>Hola! I'm Laura <span class="emoji-avatar"><img src="https://assets.lausandoval.com/profile-pic.jpg" alt="Laura Sandoval" /></span>. I'm a curiosity-driven designer based in Brooklyn, New York.</p>
+        <p>I'm currently a Product Designer at <a href="https://notion.so">Notion</a>. Previously, I've been a <a href="#">Design Engineer</a>, launched <a href="#">billion dollar redesigns</a>, <a href="#">scaled design teams and products</a>, and worked on Grocery Stores, then Offers at <a href="#">Uber</a>.</p>
+        <p>I also founded and coded <a href="#">Balance</a> and <a href="#">Chaucha</a>, two of the most downloaded iOS apps from my home country, Chile.</p>
+        <p>I value craft, kindness, meaningfulness, and intentionality.</p>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="#">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+          Work
+        </a>
+        <a href="https://x.com/laurasideral" target="_blank">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4l11.733 16h4.267l-11.733-16z"/><path d="M4 20l6.768-6.768m2.46-2.46L20 4"/></svg>
+          X
+        </a>
+        <a href="https://notes.lausandoval.com/" target="_blank">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 17.5v-6.5h.5l4 6h.5v-6.5"/><path d="M19.077 20.071l-11.53.887a1 1 0 0 1-.876-.397l-2.471-3.294a1 1 0 0 1-.2-.6v-10.741a1 1 0 0 1 .923-.997l11.389-.876a2 2 0 0 1 1.262.33l1.535 1.023a2 2 0 0 1 .891 1.664v12.004a1 1 0 0 1-.923.997z"/><path d="M4.5 5.5l2.5 2.5"/><path d="M20 7l-13 1v12.5"/></svg>
+          Notes
+        </a>
+      </nav>
+    </section>
+
+    <!-- ── PROJECTS ── -->
+    <section class="featured-projects">
+
+      <!-- Project 1 -->
+      <a href="#" class="project-card">
+        <video class="project-thumbnail" autoplay muted loop playsinline preload="metadata">
+          <source src="https://assets.lausandoval.com/design-work/uber/uber-eats-affordability/savings-tracker-cover.mp4" type="video/mp4" />
+        </video>
+        <div class="project-overlay">
+          <div class="project-info">
+            <span class="project-title">Affordability on Uber Eats</span>
+            <span class="project-year">2025</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Project 2 -->
+      <a href="#" class="project-card">
+        <img class="project-thumbnail" src="https://assets.lausandoval.com/design-work/uber/shopping-lists/shopping-lists-cover.png" alt="Shopping Lists on Uber Eats" loading="lazy" />
+        <div class="project-overlay">
+          <div class="project-info">
+            <span class="project-title">Shopping Lists on Uber Eats</span>
+            <span class="project-year">2024</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Project 3 -->
+      <a href="#" class="project-card">
+        <video class="project-thumbnail" autoplay muted loop playsinline preload="metadata">
+          <source src="https://assets.lausandoval.com/design-work/transantiago-bot/transantiago-bot-cover.mp4" type="video/mp4" />
+        </video>
+        <div class="project-overlay">
+          <div class="project-info">
+            <span class="project-title">Transantiago Bot</span>
+            <span class="project-year">2018 — 2019</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Project 4 -->
+      <a href="#" class="project-card">
+        <video class="project-thumbnail" autoplay muted loop playsinline preload="metadata">
+          <source src="https://assets.lausandoval.com/design-work/balance/app/balance-cover.mp4" type="video/mp4" />
+        </video>
+        <div class="project-overlay">
+          <div class="project-info">
+            <span class="project-title">Balance — Your transit cards in one place</span>
+            <span class="project-year">Since 2019</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- View All -->
+      <div class="view-all-wrap">
+        <button class="btn btn-secondary">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+          All Work
+        </button>
+        <button class="btn btn-tertiary">Back to Top</button>
+      </div>
+
+      <footer>
+        <p>© Rachel Quiroz, 2026</p>
+      </footer>
+
+    </section>
+  </div>
+
+</body>
+</html>
+
