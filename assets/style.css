@@ -380,3 +380,19 @@ footer {
     /* Sin relleno de fondo */
     display: block;
   }
+  .project-card {
+  display: block;
+  position: relative;
+  width: 100%;
+  min-height: 200px;
+  overflow: hidden;
+  background-color: #f3f4f6; /* Si la imagen falla o tarda, se verá el recuadro gris */
+}
+
+.project-thumbnail {
+  display: block;
+  width: 100%;
+  height: auto;
+  min-height: 200px;
+  object-fit: cover;
+}
