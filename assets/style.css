@@ -1,5 +1,7 @@
 /* ── RESET ── */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -85,7 +87,7 @@ a {
   font-size: 14.5px;
 }
 
-.intro p + p {
+.intro p+p {
   margin-top: 20px;
 }
 
@@ -187,13 +189,11 @@ a {
 .project-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    to bottom,
-    transparent 40%,
-    rgba(0, 0, 0, 0.1) 60%,
-    rgba(0, 0, 0, 0.55) 80%,
-    rgba(0, 0, 0, 0.75) 100%
-  );
+  background: linear-gradient(to bottom,
+      transparent 40%,
+      rgba(0, 0, 0, 0.1) 60%,
+      rgba(0, 0, 0, 0.55) 80%,
+      rgba(0, 0, 0, 0.75) 100%);
   display: flex;
   align-items: flex-end;
   padding: 24px;
@@ -315,3 +315,70 @@ footer {
     padding: 0 16px 100px;
   }
 }
+
+/* Máscara de recorte apaisada / rectangular redondeada */
+.cv-avatar {
+  width: 1100px;
+  /* Puedes ajustar el ancho que prefieras (ej. 140px - 180px) */
+  height: auto;
+  /* La altura la controla el aspect-ratio */
+  aspect-ratio: 2 / 1;
+  /* Proporción apaisada y estrecha (también puedes probar 2 / 1) */
+  object-fit: cover;
+  /* Evita que la foto se estire o deforme */
+  object-position: center;
+  /* Centra el encuadre (o 'top' si corta la cabeza) */
+  display: block;
+  border: 3px solid #ffffff;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+
+  /* Contenedor del ícono */
+  .contact-card-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    min-width: 42px;
+    /* Evita que se encoja en pantallas pequeñas */
+    border-radius: 10px;
+    background-color: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+  }
+
+  /* Control estricto de tamaño para los SVG de contacto */
+  .contact-card-icon svg {
+    width: 20px !important;
+    height: 20px !important;
+    stroke: #222;
+    stroke-width: 1.8;
+    display: block;
+  }
+
+  /* Contenedor del ícono */
+  .contact-card-icon {
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    background-color: #f3f4f6;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  /* Ícono SVG visible y con tamaño controlado */
+  .contact-card-icon svg {
+    width: 22px;
+    height: 22px;
+    stroke: #111827;
+    /* Color visible oscuro */
+    stroke-width: 2;
+    /* Grosor de la línea */
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    fill: none;
+    /* Sin relleno de fondo */
+    display: block;
+  }
