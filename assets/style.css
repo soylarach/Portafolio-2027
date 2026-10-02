@@ -320,7 +320,7 @@ footer {
 .cv-avatar [src] {
   width: 140px;
   /* Puedes ajustar el ancho que prefieras (ej. 140px - 180px) */
-  aspect-ratio: 8 / 12;
+  aspect-ratio: 8 / 12  ;
   /* Proporción apaisada y estrecha (también puedes probar 2 / 1) */
   object-fit: cover;
   /* Evita que la foto se estire o deforme */
