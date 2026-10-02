@@ -1,1 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
 
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rachel Quiroz - Sobre mí / CV</title>
+  <link rel="stylesheet" href="./assets/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+</head>
+
+<body>
+
+  <!-- Mobile bottom nav -->
+  <nav class="nav-tabs">
+    <a href="./index.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="3" width="7" height="7" rx="1" />
+        <rect x="14" y="3" width="7" height="7" rx="1" />
+        <rect x="3" y="14" width="7" height="7" rx="1" />
+        <rect x="14" y="14" width="7" height="7" rx="1" />
+      </svg>
+      Work
+    </a>
+    <a href="./sobremi.html" class="active">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="7" r="4" />
+        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+      </svg>
+      About me
+    </a>
+    <a href="./contacto.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+        <polyline points="22,6 12,13 2,6" />
+      </svg>
+      Contacto
+    </a>
+  </nav>
+
+  <div class="home">
+
+    <!-- ── SIDEBAR ── -->
+    <section class="sidebar">
+      <div class="intro">
+        <p>¡Hola! Soy Rachel, diseñadora y comunicadora apasionada por crear experiencias digitales centradas en el
+          usuario. Combino la empatía de la investigación con el diseño visual en Figma y bases de desarrollo web para
+          construir productos que no solo se vean bien, sino que realmente le hagan la vida más fácil a la gente.
+        </p>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="./index.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="7" height="7" rx="1" />
+            <rect x="14" y="3" width="7" height="7" rx="1" />
+            <rect x="3" y="14" width="7" height="7" rx="1" />
+            <rect x="14" y="14" width="7" height="7" rx="1" />
+          </svg>
+          Proyectos
+        </a>
+        <a href="./sobremi.html" class="active">
+          Sobre mí
+        </a>
+        <a href="./contacto.html">
+          Contacto
+        </a>
+      </nav>
+    </section>
+
+    <!-- ── CONTENIDO PRINCIPAL: CV / SOBRE MÍ ── -->
+    <main class="cv-content">
+      
+      <header class="cv-header">
+        <h1>Currículum Vitae</h1>
+        <p class="cv-subtitle">Product Designer & Front-End Developer</p>
+      </header>
+
+      <!-- Resumen Profesional -->
+      <section class="cv-section">
+        <h2>Perfil</h2>
+        <p>
+          Diseñadora integral con experiencia en diseño de producto digital (UI/UX), prototipado en Figma y desarrollo front-end. Especializada en transformar requerimientos complejos en interfaces limpias, accesibles e intuitivas.
+        </p>
+      </section>
+
+      <!-- Experiencia -->
+      <section class="cv-section">
+        <h2>Experiencia</h2>
+        
+        <article class="cv-item">
+          <div class="cv-item-header">
+            <h3>Product Designer</h3>
+            <span class="cv-date">2024 — Presente</span>
+          </div>
+          <p class="cv-company">Freelance / Proyectos Digitales</p>
+          <p class="cv-desc">
+            Diseño e investigación de experiencia de usuario para aplicaciones web y móviles, creación de sistemas de diseño y prototipos interactivos.
+          </p>
+        </article>
+
+        <article class="cv-item">
+          <div class="cv-item-header">
+            <h3>Diseño & Comunicación Estratégica</h3>
+            <span class="cv-date">2022 — 2024</span>
+          </div>
+          <p class="cv-company">Comunicación Pública y Proyectos</p>
+          <p class="cv-desc">
+            Desarrollo de estrategias de vinculación, gestión de contenidos e identidad visual para proyectos de impacto público y comunitario.
+          </p>
+        </article>
+      </section>
+
+      <!-- Educación -->
+      <section class="cv-section">
+        <h2>Educación</h2>
+        
+        <article class="cv-item">
+          <div class="cv-item-header">
+            <h3>Diseño Integral</h3>
+            <span class="cv-date">Pontificia Universidad Católica de Chile</span>
+          </div>
+        </article>
+
+        <article class="cv-item">
+          <div class="cv-item-header">
+            <h3>Desarrollo Web Front-End</h3>
+            <span class="cv-date">Bootcamp / Certificación</span>
+          </div>
+        </article>
+      </section>
+
+      <!-- Habilidades / Skills -->
+      <section class="cv-section">
+        <h2>Habilidades</h2>
+        <div class="skills-tags">
+          <span>Figma</span>
+          <span>UI/UX Design</span>
+          <span>Design Systems</span>
+          <span>HTML5 & CSS3</span>
+          <span>JavaScript</span>
+          <span>Git & GitHub</span>
+          <span>Responsive Design</span>
+        </div>
+      </section>
+
+      <!-- Footer & Volver arriba -->
+      <div class="view-all-wrap">
+        <a href="https://rqsalinas.myportfolio.com" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+          Portafolio Behance/Adobe
+        </a>
+        <button class="btn btn-tertiary" onclick="window.scrollTo({ top: 0, behavior: 'smooth' });">
+          Volver arriba
+        </button>
+      </div>
+
+      <footer>
+        <p>© Rachel Quiroz, 2026</p>
+      </footer>
+
+    </main>
+
+  </div>
+
+</body>
+
+</html>
